@@ -1,0 +1,4 @@
+name: TaggerNationLib
+version: '${project.version}'
+main: com.taggernation.taggernationlib.TaggerNationLib
+api-version: 1.13
