@@ -121,7 +121,7 @@ public class Logger {
    * @return Formatted message
    */
   public String adventureFormat(String message) {
-    Component component = LabAide.miniMessage.deserialize(message);
+    Component component = LabAide.getMiniMessage().deserialize(message);
     return legecySerializer.serialize(component);
   }
 }

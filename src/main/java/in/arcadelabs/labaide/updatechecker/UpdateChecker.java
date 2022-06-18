@@ -228,7 +228,7 @@ public class UpdateChecker {
         for (Player player : Bukkit.getOnlinePlayers()) {
           if (Bukkit.getOnlinePlayers().size() > 0 && player.hasPermission("greetings.update")) {
             for (final String message : instance.getMessage()) {
-              LabAide.messenger.sendMessage(player, message);
+              LabAide.getMessenger().sendMessage(player, message);
             }
           }
         }

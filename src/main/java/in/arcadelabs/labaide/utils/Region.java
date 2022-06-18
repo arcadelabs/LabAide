@@ -39,6 +39,7 @@ import java.util.Objects;
  *
  * @author desht (Original code), Edward (Editor of code)
  */
+@SuppressWarnings("unused")
 public class Region implements Iterable<Block>, Cloneable, ConfigurationSerializable {
   protected final String worldName;
   protected final int x1, y1, z1;

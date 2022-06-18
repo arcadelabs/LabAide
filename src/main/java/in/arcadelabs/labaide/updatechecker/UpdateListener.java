@@ -18,12 +18,11 @@
 
 package in.arcadelabs.labaide.updatechecker;
 
+import in.arcadelabs.labaide.LabAide;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
-
-import static in.arcadelabs.labaide.LabAide.messenger;
 
 public class UpdateListener implements Listener {
 
@@ -40,7 +39,7 @@ public class UpdateListener implements Listener {
             (instance.getNotificationPermission() != null &&
                     player.hasPermission(instance.getNotificationPermission()))) {
       for (final String message : instance.getMessage()) {
-        messenger.sendMessage(player, message);
+        LabAide.getMessenger().sendMessage(player, message);
       }
     }
   }

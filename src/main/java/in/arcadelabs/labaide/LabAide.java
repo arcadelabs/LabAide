@@ -18,45 +18,29 @@
 
 package in.arcadelabs.labaide;
 
-import in.arcadelabs.labaide.placeholder.Placeholder;
 import io.github.alenalex.adventurelib.spigot.impl.SpigotMessenger;
 import lombok.Getter;
 import lombok.SneakyThrows;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.plugin.java.JavaPlugin;
 
-
 @Getter
 public class LabAide extends JavaPlugin {
 
-  public static LabAide plugin;
-  public static Placeholder papiHook;
-  public static SpigotMessenger messenger;
-  public static MiniMessage miniMessage;
-  private String papi;
-
-  public void papiExist() {
-    if (plugin.getServer().getPluginManager().getPlugin("PlaceholderAPI") != null) {
-      papi = "HOOKED";
-    } else {
-      papi = "SKIPPED";
-    }
-  }
+  @Getter
+  private static MiniMessage miniMessage;
+  @Getter
+  private static SpigotMessenger messenger;
 
   @SneakyThrows
   @Override
   public void onEnable() {
-    // Plugin startup logic
-    plugin = this;
-    papiHook = new Placeholder();
-//        messageFramework = new FrameworkBuilder().setPlugin(this).withMiniMessageEngine().build();
+    miniMessage = MiniMessage.builder().build();
     messenger = SpigotMessenger
             .builder()
             .setPlugin(this)
             .defaultToMiniMessageTranslator()
             .build();
-    miniMessage = MiniMessage.builder().build();
-    papiExist();
   }
 
   @Override

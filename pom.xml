@@ -28,18 +28,6 @@
                 <configuration>
                     <relocations>
                         <relocation>
-                            <pattern>dev.triumphteam.gui</pattern>
-                            <shadedPattern>in.arcadelabs.libs.gui</shadedPattern> <!-- Replace package here here -->
-                        </relocation>
-                        <relocation>
-                            <pattern>io.papermc.lib</pattern>
-                            <shadedPattern>in.arcadelabs.libs.paperlib</shadedPattern> <!-- Replace this -->
-                        </relocation>
-                        <relocation>
-                            <pattern>dev.triumphteam.api</pattern>
-                            <shadedPattern>in.arcadelabs.libs.triumphteamapi</shadedPattern> <!-- Replace this -->
-                        </relocation>
-                        <relocation>
                             <pattern>net.kyori</pattern>
                             <shadedPattern>in.arcadelabs.libs.kyori</shadedPattern> <!-- Replace this -->
                         </relocation>
@@ -48,28 +36,12 @@
                             <shadedPattern>in.arcadelabs.libs.gson</shadedPattern> <!-- Replace this -->
                         </relocation>
                         <relocation>
-                            <pattern>com.github.RealRONiN</pattern>
-                            <shadedPattern>in.arcadelabs.libs.adventure</shadedPattern> <!-- Replace this -->
-                        </relocation>
-                        <relocation>
-                            <pattern>dev.vankka</pattern>
-                            <shadedPattern>in.arcadelabs.libs.vankka</shadedPattern> <!-- Replace this -->
-                        </relocation>
-                        <relocation>
                             <pattern>co.aikar.commands</pattern>
                             <shadedPattern>in.arcadelabs.libs.aikar.acf</shadedPattern> <!-- Replace this -->
                         </relocation>
                         <relocation>
                             <pattern>co.aikar.locales</pattern>
                             <shadedPattern>in.arcadelabs.libs.aikar.locales</shadedPattern> <!-- Replace this -->
-                        </relocation>
-                        <relocation>
-                            <pattern>dev.dejvokep.boostedyaml</pattern>
-                            <shadedPattern>in.arcadelabs.libs.boostedyaml</shadedPattern>
-                        </relocation>
-                        <relocation>
-                            <pattern>net.byteflux.libby</pattern>
-                            <shadedPattern>in.arcadelabs.libs.net.byteflux.libby</shadedPattern>
                         </relocation>
                     </relocations>
                 </configuration>
@@ -96,10 +68,6 @@
 
     <repositories>
         <repository>
-            <id>AlessioDP</id>
-            <url>https://repo.alessiodp.com/releases/</url>
-        </repository>
-        <repository>
             <id>spigotmc-repo</id>
             <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
         </repository>
@@ -112,10 +80,6 @@
             <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
         </repository>
         <repository>
-            <id>papermc</id>
-            <url>https://papermc.io/repo/repository/maven-public/</url>
-        </repository>
-        <repository>
             <id>aikar</id>
             <url>https://repo.aikar.co/content/groups/aikar/</url>
         </repository>
@@ -125,7 +89,6 @@
         </repository>
         <repository>
             <id>repo.alenalex-snapshots</id>
-<!--            <name>repository.alen.alex.me</name>-->
             <url>https://repo.alenalex.me/snapshots</url>
         </repository>
     </repositories>
@@ -136,11 +99,6 @@
             <artifactId>commons-io</artifactId>
             <version>2.11.0</version>
             <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>net.byteflux</groupId>
-            <artifactId>libby-bukkit</artifactId> <!-- Replace bukkit if you're using another platform -->
-            <version>1.1.5</version>
         </dependency>
         <dependency>
             <groupId>org.spigotmc</groupId>
@@ -159,11 +117,6 @@
             <artifactId>lombok</artifactId>
             <version>1.18.24</version>
             <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>dev.triumphteam</groupId>
-            <artifactId>triumph-gui</artifactId>
-            <version>3.1.2</version>
         </dependency>
         <dependency>
             <groupId>net.kyori</groupId>
@@ -196,21 +149,9 @@
             <version>4.1.0</version>
         </dependency>
         <dependency>
-            <groupId>io.papermc</groupId>
-            <artifactId>paperlib</artifactId>
-            <version>1.0.7</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
             <version>2.9.0</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>dev.vankka</groupId>
-            <artifactId>enhancedlegacytext</artifactId>
-            <version>1.0.0</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
@@ -218,11 +159,6 @@
             <artifactId>acf-paper</artifactId>
             <version>0.5.1-SNAPSHOT</version>
             <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>dev.dejvokep</groupId>
-            <artifactId>boosted-yaml</artifactId>
-            <version>1.2</version>
         </dependency>
         <dependency>
             <groupId>io.github.alenalex.adventurelib.spigot</groupId>
