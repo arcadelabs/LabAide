@@ -1,4 +1,4 @@
-name: TaggerNationLib
+name: LabAide
 version: '${project.version}'
-main: com.taggernation.taggernationlib.TaggerNationLib
+main: in.arcadelabs.labaide.LabAide
 api-version: 1.13

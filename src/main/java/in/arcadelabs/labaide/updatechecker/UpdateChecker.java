@@ -1,26 +1,27 @@
 /*
- *     TaggerNationLib - Common utility library for our products.
- *     Copyright (C) 2022  TaggerNation
+ *                LabAide - Common utility library for our products.
+ *                Copyright (C) 2022  ArcadeLabs Production.
  *
- *     This program is free software: you can redistribute it and/or modify
- *     it under the terms of the GNU General Public License as published by
- *     the Free Software Foundation, either version 3 of the License, or
- *     (at your option) any later version.
+ *       This program is free software: you can redistribute it and/or modify
+ *       it under the terms of the GNU General Public License as published by
+ *       the Free Software Foundation, either version 3 of the License, or
+ *       (at your option) any later version.
  *
- *     This program is distributed in the hope that it will be useful,
- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *     GNU General Public License for more details.
+ *       This program is distributed in the hope that it will be useful,
+ *       but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *       MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *       GNU General Public License for more details.
  *
- *     You should have received a copy of the GNU General Public License
- *     along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ *       You should have received a copy of the GNU General Public License
+ *       along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package com.taggernation.taggernationlib.updatechecker;
+package in.arcadelabs.labaide.updatechecker;
 
 import com.google.gson.Gson;
-import com.taggernation.taggernationlib.logger.Logger;
-import com.taggernation.taggernationlib.updatechecker.downloads.DownloadManager;
+import in.arcadelabs.labaide.LabAide;
+import in.arcadelabs.labaide.logger.Logger;
+import in.arcadelabs.labaide.updatechecker.downloads.DownloadManager;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
@@ -33,8 +34,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static com.taggernation.taggernationlib.TaggerNationLib.messenger;
-
 /*
  * Json update checker
  *
@@ -43,25 +42,15 @@ import static com.taggernation.taggernationlib.TaggerNationLib.messenger;
 @SuppressWarnings("unused")
 public class UpdateChecker {
   private final Plugin plugin;
-  private int interval;
   private final UpdateChecker instance;
-
-  public void setUpdate(Update update) {
-    this.update = update;
-  }
-
+  private final URL url;
+  Gson gson = new Gson();
+  private int interval;
   private Update update;
   private List<String> message = new ArrayList<>();
   private String permission = null;
   private boolean opNotify = false;
-  private final URL url;
   private DownloadManager downloadManager = null;
-  Gson gson = new Gson();
-
-  private void setReader(InputStreamReader reader) {
-    this.reader = reader;
-  }
-
   private InputStreamReader reader;
 
   /**
@@ -79,6 +68,14 @@ public class UpdateChecker {
     reader = new InputStreamReader(url.openStream());
     plugin.getServer().getPluginManager().registerEvents(new UpdateListener(this), plugin);
     this.update = gson.fromJson(reader, Update.class);
+  }
+
+  public void setUpdate(Update update) {
+    this.update = update;
+  }
+
+  private void setReader(InputStreamReader reader) {
+    this.reader = reader;
   }
 
   private void processMessage() {
@@ -156,16 +153,6 @@ public class UpdateChecker {
   }
 
   /**
-   * Set the permission required to receive a notification.
-   *
-   * @param permission Permission required to receive a notification
-   */
-  public UpdateChecker setNotificationPermission(String permission) {
-    this.permission = permission;
-    return this;
-  }
-
-  /**
    * Set whether to notify op players without permission.
    *
    * @param opNotify true to notify op players without permission, false to not
@@ -191,6 +178,16 @@ public class UpdateChecker {
    */
   public String getNotificationPermission() {
     return permission;
+  }
+
+  /**
+   * Set the permission required to receive a notification.
+   *
+   * @param permission Permission required to receive a notification
+   */
+  public UpdateChecker setNotificationPermission(String permission) {
+    this.permission = permission;
+    return this;
   }
 
   /**
@@ -231,7 +228,7 @@ public class UpdateChecker {
         for (Player player : Bukkit.getOnlinePlayers()) {
           if (Bukkit.getOnlinePlayers().size() > 0 && player.hasPermission("greetings.update")) {
             for (final String message : instance.getMessage()) {
-              messenger.sendMessage(player, message);
+              LabAide.messenger.sendMessage(player, message);
             }
           }
         }

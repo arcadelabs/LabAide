@@ -4,12 +4,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.taggernation</groupId>
-    <artifactId>TaggerNationLib</artifactId>
+    <groupId>in.arcadelabs</groupId>
+    <artifactId>LabAide</artifactId>
     <version>0.1</version>
     <packaging>jar</packaging>
 
-    <name>TaggerNationLib</name>
+    <name>LabAide</name>
 
     <properties>
         <java.version>14</java.version>
@@ -19,7 +19,7 @@
     </properties>
 
     <build>
-        <finalName>TaggerNationLib</finalName>
+        <finalName>LabAide</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -29,47 +29,47 @@
                     <relocations>
                         <relocation>
                             <pattern>dev.triumphteam.gui</pattern>
-                            <shadedPattern>com.taggernation.libs.gui</shadedPattern> <!-- Replace package here here -->
+                            <shadedPattern>in.arcadelabs.libs.gui</shadedPattern> <!-- Replace package here here -->
                         </relocation>
                         <relocation>
                             <pattern>io.papermc.lib</pattern>
-                            <shadedPattern>com.taggernation.libs.paperlib</shadedPattern> <!-- Replace this -->
+                            <shadedPattern>in.arcadelabs.libs.paperlib</shadedPattern> <!-- Replace this -->
                         </relocation>
                         <relocation>
                             <pattern>dev.triumphteam.api</pattern>
-                            <shadedPattern>com.taggernation.libs.triumphteamapi</shadedPattern> <!-- Replace this -->
+                            <shadedPattern>in.arcadelabs.libs.triumphteamapi</shadedPattern> <!-- Replace this -->
                         </relocation>
                         <relocation>
                             <pattern>net.kyori</pattern>
-                            <shadedPattern>com.taggernation.libs.kyori</shadedPattern> <!-- Replace this -->
+                            <shadedPattern>in.arcadelabs.libs.kyori</shadedPattern> <!-- Replace this -->
                         </relocation>
                         <relocation>
                             <pattern>com.google.code.gson</pattern>
-                            <shadedPattern>com.taggernation.libs.gson</shadedPattern> <!-- Replace this -->
+                            <shadedPattern>in.arcadelabs.libs.gson</shadedPattern> <!-- Replace this -->
                         </relocation>
                         <relocation>
                             <pattern>com.github.RealRONiN</pattern>
-                            <shadedPattern>com.taggernation.libs.adventure</shadedPattern> <!-- Replace this -->
+                            <shadedPattern>in.arcadelabs.libs.adventure</shadedPattern> <!-- Replace this -->
                         </relocation>
                         <relocation>
                             <pattern>dev.vankka</pattern>
-                            <shadedPattern>com.taggernation.libs.vankka</shadedPattern> <!-- Replace this -->
+                            <shadedPattern>in.arcadelabs.libs.vankka</shadedPattern> <!-- Replace this -->
                         </relocation>
                         <relocation>
                             <pattern>co.aikar.commands</pattern>
-                            <shadedPattern>com.taggernation.libs.aikar.acf</shadedPattern> <!-- Replace this -->
+                            <shadedPattern>in.arcadelabs.libs.aikar.acf</shadedPattern> <!-- Replace this -->
                         </relocation>
                         <relocation>
                             <pattern>co.aikar.locales</pattern>
-                            <shadedPattern>com.taggernation.libs.aikar.locales</shadedPattern> <!-- Replace this -->
+                            <shadedPattern>in.arcadelabs.libs.aikar.locales</shadedPattern> <!-- Replace this -->
                         </relocation>
                         <relocation>
                             <pattern>dev.dejvokep.boostedyaml</pattern>
-                            <shadedPattern>com.taggernation.libs.boostedyaml</shadedPattern>
+                            <shadedPattern>in.arcadelabs.libs.boostedyaml</shadedPattern>
                         </relocation>
                         <relocation>
                             <pattern>net.byteflux.libby</pattern>
-                            <shadedPattern>com.taggernation.libs.net.byteflux.libby</shadedPattern>
+                            <shadedPattern>in.arcadelabs.libs.net.byteflux.libby</shadedPattern>
                         </relocation>
                     </relocations>
                 </configuration>
