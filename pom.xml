@@ -47,6 +47,10 @@
                             <pattern>dev.dejvokep.boostedyaml</pattern>
                             <shadedPattern>in.arcadelabs.labaide.libs.boostedyaml</shadedPattern>
                         </relocation>
+                        <relocation>
+                            <pattern>io.github.alenalex.adventurelib.spigot</pattern>
+                            <shadedPattern>in.arcadelabs.labaide.libs.adventurelib</shadedPattern>
+                        </relocation>
                     </relocations>
                 </configuration>
                 <executions>
