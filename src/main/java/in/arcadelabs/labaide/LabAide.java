@@ -18,33 +18,19 @@
 
 package in.arcadelabs.labaide;
 
-import io.github.alenalex.adventurelib.spigot.impl.SpigotMessenger;
 import lombok.Getter;
 import lombok.SneakyThrows;
-import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.plugin.java.JavaPlugin;
 
 @Getter
 public class LabAide extends JavaPlugin {
 
-  @Getter
-  private static MiniMessage miniMessage;
-  @Getter
-  private static SpigotMessenger messenger;
-
   @SneakyThrows
   @Override
   public void onEnable() {
-    miniMessage = MiniMessage.builder().build();
-    messenger = SpigotMessenger
-            .builder()
-            .setPlugin(this)
-            .defaultToMiniMessageTranslator()
-            .build();
   }
 
   @Override
   public void onDisable() {
-    // Plugin shutdown logic
   }
 }
