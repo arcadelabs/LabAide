@@ -18,19 +18,3 @@
 >     <version>[VERSION]</version>
 > </dependency>
 > ```
-
-### Gradle
-
-> ```gradle
->     allprojects {
->     repositories {
->         maven { url 'https://jitpack.io' }
->     }
-> }
-> ```
-
-> ```gradle
->     dependencies {
->     implementation 'com.github.arcadelabs:LabAide:Tag'
-> }
-> ```
