@@ -21,6 +21,7 @@ package in.arcadelabs.labaide.updatechecker;
 import com.google.gson.Gson;
 import in.arcadelabs.labaide.LabAide;
 import in.arcadelabs.labaide.updatechecker.downloads.DownloadManager;
+import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
@@ -225,9 +226,9 @@ public class UpdateChecker {
       public void run() {
         processMessage();
         for (Player player : Bukkit.getOnlinePlayers()) {
-          if (Bukkit.getOnlinePlayers().size() > 0 && player.hasPermission("greetings.update")) {
+          if (Bukkit.getOnlinePlayers().size() > 0 && player.hasPermission(getNotificationPermission())) {
             for (final String message : instance.getMessage()) {
-              LabAide.getMessenger().sendMessage(player, message);
+              player.sendMessage(MiniMessage.miniMessage().deserialize(message));
             }
           }
         }

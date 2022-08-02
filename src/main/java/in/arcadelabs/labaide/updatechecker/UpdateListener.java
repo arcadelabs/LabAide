@@ -18,7 +18,7 @@
 
 package in.arcadelabs.labaide.updatechecker;
 
-import in.arcadelabs.labaide.LabAide;
+import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -39,7 +39,7 @@ public class UpdateListener implements Listener {
             (instance.getNotificationPermission() != null &&
                     player.hasPermission(instance.getNotificationPermission()))) {
       for (final String message : instance.getMessage()) {
-        LabAide.getMessenger().sendMessage(player, message);
+        player.sendMessage(MiniMessage.miniMessage().deserialize(message));
       }
     }
   }
