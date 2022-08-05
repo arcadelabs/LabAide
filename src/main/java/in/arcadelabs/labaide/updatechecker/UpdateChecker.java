@@ -20,6 +20,7 @@ package in.arcadelabs.labaide.updatechecker;
 
 import com.google.gson.Gson;
 import in.arcadelabs.labaide.LabAide;
+import in.arcadelabs.labaide.logger.Logger;
 import in.arcadelabs.labaide.updatechecker.downloads.DownloadManager;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
@@ -233,7 +234,7 @@ public class UpdateChecker {
           }
         }
         for (final String message : instance.getMessage()) {
-          Bukkit.getLogger().info(message);
+          LabAide.Logger().logger(Logger.Level.INFO ,MiniMessage.miniMessage().deserialize(message));
         }
         try {
           reader = new InputStreamReader(url.openStream());

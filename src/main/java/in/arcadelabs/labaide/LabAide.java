@@ -18,16 +18,32 @@
 
 package in.arcadelabs.labaide;
 
+import in.arcadelabs.labaide.logger.Logger;
 import lombok.Getter;
 import lombok.SneakyThrows;
+import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.plugin.java.JavaPlugin;
 
 @Getter
 public class LabAide extends JavaPlugin {
 
+  @Getter
+  private static LabAide instance;
+  @Getter
+  private static Logger logger;
+
   @SneakyThrows
   @Override
   public void onEnable() {
+    logger = new Logger("❥",
+            MiniMessage.miniMessage().deserialize(
+                    "<gradient:#f10f5d:#f58c67><b><color:#f89999>『</color>ArcadeLabs<color:#f89999>』"),
+            null, null);
+    logger.logger(Logger.Level.INFO, MiniMessage.miniMessage().deserialize("<green><b>LabAide up and functional!"));
+  }
+
+  public static Logger Logger() {
+    return logger;
   }
 
   @Override
