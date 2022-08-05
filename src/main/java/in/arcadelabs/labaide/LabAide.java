@@ -29,7 +29,6 @@ public class LabAide extends JavaPlugin {
 
   @Getter
   private static LabAide instance;
-  @Getter
   private static Logger logger;
 
   @SneakyThrows
