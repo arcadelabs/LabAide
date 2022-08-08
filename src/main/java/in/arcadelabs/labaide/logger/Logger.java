@@ -53,7 +53,7 @@ public class Logger {
    * @param level   the level
    * @param message the message
    */
-  public void logger(final Level level, final Component message) {
+  public void log(final Level level, final Component message) {
     switch (level) {
       case INFO -> logger.info(prefix.append(message));
       case WARN -> logger.warn(prefix.append(message));
@@ -69,7 +69,7 @@ public class Logger {
    * @param message   the message
    * @param stackrace the stackrace
    */
-  public void logger(final Level level, final Component message, final Throwable stackrace) {
+  public void log(final Level level, final Component message, final Throwable stackrace) {
     switch (level) {
       case INFO -> logger.info(prefix.append(message), stackrace);
       case WARN -> logger.warn(prefix.append(message), stackrace);
@@ -85,9 +85,9 @@ public class Logger {
    * @param level   the level
    * @param message the message
    */
-  public void logger(final Player player, final Level level, final Component message) {
-    if (player == null) this.logger(level, miniMessage.deserialize(allPrefix).append(message));
-    else this.logger(level, miniMessage.deserialize(playerPrefix, Placeholder.component("player", player.name()))
+  public void log(final Player player, final Level level, final Component message) {
+    if (player == null) this.log(level, miniMessage.deserialize(allPrefix).append(message));
+    else this.log(level, miniMessage.deserialize(playerPrefix, Placeholder.component("player", player.name()))
             .append(message));
   }
 

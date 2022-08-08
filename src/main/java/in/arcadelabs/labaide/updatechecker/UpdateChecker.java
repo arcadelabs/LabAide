@@ -234,7 +234,7 @@ public class UpdateChecker {
           }
         }
         for (final String message : instance.getMessage()) {
-          LabAide.Logger().logger(Logger.Level.INFO ,MiniMessage.miniMessage().deserialize(message));
+          LabAide.Logger().log(Logger.Level.INFO, MiniMessage.miniMessage().deserialize(message));
         }
         try {
           reader = new InputStreamReader(url.openStream());

@@ -19,10 +19,17 @@
 package in.arcadelabs.labaide;
 
 import in.arcadelabs.labaide.logger.Logger;
+import in.arcadelabs.labaide.metrics.BStats;
 import lombok.Getter;
 import lombok.SneakyThrows;
 import net.kyori.adventure.text.minimessage.MiniMessage;
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
+import org.bukkit.Bukkit;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 public class LabAide extends JavaPlugin {
@@ -30,22 +37,45 @@ public class LabAide extends JavaPlugin {
   @Getter
   private static LabAide instance;
   private static Logger logger;
-
-  @SneakyThrows
-  @Override
-  public void onEnable() {
-    logger = new Logger("❥",
-            MiniMessage.miniMessage().deserialize(
-                    "<gradient:#f10f5d:#f58c67><b><color:#f89999>『</color>ArcadeLabs<color:#f89999>』"),
-            null, null);
-    logger.logger(Logger.Level.INFO, MiniMessage.miniMessage().deserialize("<green><b>LabAide up and functional!"));
-  }
+  private BStats metrics;
+  private final LegacyComponentSerializer legecySerializer = LegacyComponentSerializer.builder().hexColors().useUnusualXRepeatedCharacterHexFormat().build();
+  private final MiniMessage miniMessage = MiniMessage.builder().build();
+  private final List<Plugin> dependants = new ArrayList<>();
 
   public static Logger Logger() {
     return logger;
   }
 
+  @SneakyThrows
+  @Override
+  public void onEnable() {
+    metrics = new BStats(this, 16060);
+    instance = this;
+    logger = new Logger("LabAide",
+            MiniMessage.miniMessage().deserialize(
+                    "<b><color:#f58066>⌬</color></b>  "),
+            null, null);
+    logger.log(Logger.Level.INFO, MiniMessage.miniMessage().deserialize(
+            "<b><gradient:#e01e37:#f58c67>" +
+                    "LabAide </gradient><color:#f89999><gradient:#f58c67:#f10f5d>up and functional!" +
+                    "</gradient></b>"));
+
+    final List<Plugin> serverPlugins = List.of(Bukkit.getPluginManager().getPlugins());
+    for (final Plugin plugin : serverPlugins) {
+      if (plugin.getDescription().getDepend().contains("LabAide")
+              || plugin.getDescription().getSoftDepend().contains("LabAide")) dependants.add(plugin);
+    }
+    final String pluralOrNot = dependants.size() > 1 ?
+            "Hooked into " + dependants.size() + " plugins.\n Dependants: "
+                    + dependants.toString().substring(1, dependants.toString().length() - 1) :
+            "Hooked into " + dependants.get(0);
+    logger.log(Logger.Level.INFO, MiniMessage.miniMessage().deserialize(
+            "<b><gradient:#e01e37:#f58c67>" + pluralOrNot + "</gradient></b>"));
+  }
+
   @Override
   public void onDisable() {
+    logger.log(Logger.Level.INFO, MiniMessage.miniMessage().deserialize(
+            "<b><gradient:#f58c67:#f10f5d>Adios...</gradient></b>"));
   }
 }
