@@ -37,10 +37,10 @@ public class LabAide extends JavaPlugin {
   @Getter
   private static LabAide instance;
   private static Logger logger;
-  private BStats metrics;
   private final LegacyComponentSerializer legecySerializer = LegacyComponentSerializer.builder().hexColors().useUnusualXRepeatedCharacterHexFormat().build();
   private final MiniMessage miniMessage = MiniMessage.builder().build();
   private final List<Plugin> dependants = new ArrayList<>();
+  private BStats metrics;
 
   public static Logger Logger() {
     return logger;
