@@ -65,12 +65,16 @@ public class LabAide extends JavaPlugin {
       if (plugin.getDescription().getDepend().contains("LabAide")
               || plugin.getDescription().getSoftDepend().contains("LabAide")) dependants.add(plugin);
     }
-    final String pluralOrNot = dependants.size() > 1 ?
-            "Hooked into " + dependants.size() + " plugins.\n Dependants: "
-                    + dependants.toString().substring(1, dependants.toString().length() - 1) :
-            "Hooked into " + dependants.get(0);
-    logger.log(Logger.Level.INFO, MiniMessage.miniMessage().deserialize(
-            "<b><gradient:#e01e37:#f58c67>" + pluralOrNot + "</gradient></b>"));
+    if (!dependants.isEmpty()) {
+      final String pluralOrNot = dependants.size() > 1 ?
+              "Hooked into " + dependants.size() + " plugins.\n Dependants: "
+                      + dependants.toString().substring(1, dependants.toString().length() - 1) :
+              "Hooked into " + dependants.get(0);
+      logger.log(Logger.Level.INFO, MiniMessage.miniMessage().deserialize(
+              "<b><gradient:#e01e37:#f58c67>" + pluralOrNot + "</gradient></b>"));
+    } else logger.log(Logger.Level.INFO, MiniMessage.miniMessage().deserialize(
+            "<b><gradient:#e01e37:#f58c67>No <st>plugins</st>partners wanna hook with me," +
+                    " guess you and me are same afterall.</gradient></b>"));
   }
 
   @Override
