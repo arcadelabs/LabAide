@@ -24,7 +24,6 @@ import lombok.Getter;
 import lombok.SneakyThrows;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
-import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -41,6 +40,7 @@ public class LabAide extends JavaPlugin {
   private final MiniMessage miniMessage = MiniMessage.builder().build();
   private final List<Plugin> dependants = new ArrayList<>();
   private BStats metrics;
+  private LabAideHooked hooked;
 
   public static Logger Logger() {
     return logger;
@@ -55,26 +55,12 @@ public class LabAide extends JavaPlugin {
             MiniMessage.miniMessage().deserialize(
                     "<b><color:#f58066>⌬</color></b>  "),
             null, null);
+    hooked = new LabAideHooked(logger);
     logger.log(Logger.Level.INFO, MiniMessage.miniMessage().deserialize(
             "<b><gradient:#e01e37:#f58c67>" +
                     "LabAide </gradient><color:#f89999><gradient:#f58c67:#f10f5d>up and functional!" +
                     "</gradient></b>"));
 
-    final List<Plugin> serverPlugins = List.of(Bukkit.getPluginManager().getPlugins());
-    for (final Plugin plugin : serverPlugins) {
-      if (plugin.getDescription().getDepend().contains("LabAide")
-              || plugin.getDescription().getSoftDepend().contains("LabAide")) dependants.add(plugin);
-    }
-    if (!dependants.isEmpty()) {
-      final String pluralOrNot = dependants.size() > 1 ?
-              "Hooked into " + dependants.size() + " plugins.\n Dependants: "
-                      + dependants.toString().substring(1, dependants.toString().length() - 1) :
-              "Hooked into " + dependants.get(0);
-      logger.log(Logger.Level.INFO, MiniMessage.miniMessage().deserialize(
-              "<b><gradient:#e01e37:#f58c67>" + pluralOrNot + "</gradient></b>"));
-    } else logger.log(Logger.Level.INFO, MiniMessage.miniMessage().deserialize(
-            "<b><gradient:#e01e37:#f58c67>No <st>plugins</st>partners wanna hook with me," +
-                    " guess you and me are same afterall.</gradient></b>"));
   }
 
   @Override
