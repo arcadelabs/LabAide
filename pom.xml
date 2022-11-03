@@ -76,6 +76,15 @@
             </resource>
         </resources>
     </build>
+
+    <distributionManagement>
+        <repository>
+            <id>arcadelabs-mvn-releases</id>
+            <name>ArcadeLabs Repository</name>
+            <url>https://repo.zorino.in/releases</url>
+        </repository>
+    </distributionManagement>
+
     <repositories>
         <repository>
             <id>papermc</id>
