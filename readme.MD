@@ -1,3 +1,41 @@
+## Dependancy information
+
+  <a href="https://github.com/arcadelabs/LabAide/releases/latest">
+   <img src="https://repo.zorino.in/api/badge/latest/releases/in/arcadelabs/labaide/LabAide?color=40c14a&name=LabAide version"  alt="LabAide latest version"/>
+  </a>
+
+### Maven
+
+> ```xml
+> <repositories>
+>      <repository>
+>          <id>arcadelabs-mvn-releases</id>
+>          <name>ArcadeLabs Repository</name>
+>          <url>https://repo.zorino.in/releases</url>
+>      </repository>
+> </repositories>
+> ```
+
+> ```xml
+> <dependency>
+>     <groupId>in.arcadelabs.labaide</groupId>
+>     <artifactId>LabAide</artifactId>
+>     <version>[VERSION]</version>
+> </dependency>
+> ```
+
+### Gradle
+
+> ```groovy
+>  maven {
+>  url "https://repo.zorino.in/releases"
+>  }
+> ```
+
+> ```groovy
+>  implementation "in.arcadelabs.labaide:LabAide:[VERSION]"
+> ```
+
 ## Utilities
 ```
 .
@@ -118,41 +156,3 @@ int cooldown = 10; //Add cooldown peeriod in seconds
     
     char letter = randomChar.get();
 ```
-<br>
-
-[![](https://jitpack.io/v/arcadelabs/LabAide.svg)](https://jitpack.io/#arcadelabs/LabAide)
-
-### Maven
-
-> ```xml
-> <repositories>
->     <repository>
->         <id>jitpack.io</id>
->         <url>https://jitpack.io</url>
->     </repository>
-> </repositories>
-> ```
-
-> ```xml
-> <dependency>
->     <groupId>com.github.arcadelabs</groupId>
->     <artifactId>LabAide</artifactId>
->     <version>[VERSION]</version>
-> </dependency>
-> ```
-
-### Gradle
-
-> ```gradle
-> allprojects {
-> 	repositories {
-> 		maven { url 'https://jitpack.io' }
-> 	}
-> }
-> ```
-
-> ```gradle
-> dependencies {
-> 	implementation 'com.github.arcadelabs:LabAide:[VERSION]'
-> }
-> ```
