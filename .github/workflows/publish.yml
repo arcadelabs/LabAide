@@ -1,16 +1,20 @@
 name: Publish LabAide to Maven repository
-on: workflow_dispatch
+run-name: Deploy to Maven repo by @${{ github.actor }}
+on: [workflow_dispatch, release]
 jobs:
   publish:
+    name: Publish
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Set up actions checkout 
+        uses: actions/checkout@v2
       - name: Set up JDK 18
         uses: actions/setup-java@v1
         with:
           java-version: 18
-      - uses: s4u/maven-settings-action@v2.6.0
+      - name: Set up maven credentials
+        uses: s4u/maven-settings-action@v2.6.0
         with:
           servers: '[{"id": "arcadelabs-mvn-releases", "username": "${{ secrets.REPO_NAME }}", "password": "${{ secrets.REPO_TOKEN }}"}]'
       - name: Publish with Maven
-        run: mvn deploy -X
+        run: mvn deploy
