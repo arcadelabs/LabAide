@@ -1,7 +1,7 @@
 ## Dependancy information
 
   <a href="https://github.com/arcadelabs/LabAide/releases/latest">
-   <img src="https://repo.zorino.in/api/badge/latest/releases/in/arcadelabs/labaide/LabAide?color=40c14a&name=LabAide version"  alt="LabAide latest version"/>
+   <img src="https://repo.zorino.in/api/badge/latest/releases/in/arcadelabs/labaide/LabAide?color=40c14a&name=LabAide%20ersion"  alt="LabAide latest version"/>
   </a>
 
 ### Maven
