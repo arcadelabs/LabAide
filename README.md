@@ -1,17 +1,17 @@
 ## Dependancy information
 
-  <a href="https://github.com/arcadelabs/LabAide/releases/latest">
-   <img src="https://repo.zorino.in/api/badge/latest/releases/in/arcadelabs/labaide/LabAide?color=40c14a&name=LabAide%20version"  alt="LabAide latest version"/>
-  </a>
+[![LabAide version](https://repo.zorino.in/api/badge/latest/releases/in/arcadelabs/labaide/LabAide?color=40c14a&name=LabAide%20version)](https://github.com/arcadelabs/LabAide/releases/latest)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/arcadelabs/LabAIde/Publish%20LabAide%20to%20Maven%20repository/master?color=45b94e)](https://repo.zorino.in/#/releases/in/arcadelabs/labaide/LabAide)    
+
 
 ### Maven
 
 > ```xml
->      <repository>
->          <id>arcadelabs-mvn-releases</id>
->          <name>ArcadeLabs Repository</name>
->          <url>https://repo.zorino.in/releases</url>
->      </repository>
+> <repository>
+>     <id>arcadelabs-mvn-releases</id>
+>     <name>ArcadeLabs Repository</name>
+>     <url>https://repo.zorino.in/releases</url>
+> </repository>
 > ```
 
 > ```xml
@@ -19,19 +19,22 @@
 >     <groupId>in.arcadelabs.labaide</groupId>
 >     <artifactId>LabAide</artifactId>
 >     <version>[VERSION]</version>
+>     <scope>provided</scope>
 > </dependency>
 > ```
 
 ### Gradle
 
 > ```groovy
->  maven {
->  url "https://repo.zorino.in/releases"
->  }
+> maven {
+>     url 'https://repo.zorino.in/releases'
+> }
 > ```
 
 > ```groovy
->  implementation "in.arcadelabs.labaide:LabAide:[VERSION]"
+> dependencies {
+>     compileOnly 'in.arcadelabs.labaide:LabAide:[VERSION]'
+> }
 > ```
 
 ## Utilities
