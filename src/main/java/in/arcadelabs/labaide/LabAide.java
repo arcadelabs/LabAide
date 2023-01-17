@@ -40,8 +40,6 @@ public class LabAide extends JavaPlugin {
   private final MiniMessage miniMessage = MiniMessage.builder().build();
   private final List<Plugin> dependants = new ArrayList<>();
   private BStats metrics;
-  private LabAideHooked hooked;
-
   public static Logger Logger() {
     return logger;
   }
@@ -55,12 +53,11 @@ public class LabAide extends JavaPlugin {
             MiniMessage.miniMessage().deserialize(
                     "<b><color:#f58066>⌬</color></b>  "),
             null, null);
-    hooked = new LabAideHooked(logger);
     logger.log(Logger.Level.INFO, MiniMessage.miniMessage().deserialize(
             "<b><gradient:#e01e37:#f58c67>" +
                     "LabAide </gradient><color:#f89999><gradient:#f58c67:#f10f5d>up and functional!" +
                     "</gradient></b>"));
-
+    this.getServer().getScheduler().runTaskLater(this, () -> new LabAideHooked(logger), 1L);
   }
 
   @Override
