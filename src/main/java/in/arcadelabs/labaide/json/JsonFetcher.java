@@ -11,17 +11,17 @@ import java.net.URLConnection;
 @UtilityClass
 public class JsonFetcher {
 
-    public String getJsonString(URL url) throws IOException {
-        URLConnection urlConnection = url.openConnection();
-        BufferedReader reader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
-        StringBuilder buffer = new StringBuilder();
-        String line;
+  public String getJsonString(URL url) throws IOException {
+    URLConnection urlConnection = url.openConnection();
+    BufferedReader reader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+    StringBuilder buffer = new StringBuilder();
+    String line;
 
-        while ((line = reader.readLine()) != null) {
-            buffer.append(line);
-        }
-        return buffer.toString();
+    while ((line = reader.readLine()) != null) {
+      buffer.append(line);
     }
+    return buffer.toString();
+  }
 
 }
 

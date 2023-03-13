@@ -18,88 +18,46 @@
 
 package in.arcadelabs.labaide.cooldown;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.HashMap;
-import java.util.UUID;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-public class CooldownManager {
-  private final HashMap<UUID, Long> cooldownMap;
-  private long cooldownPeriod;
+public class CooldownManager<T> {
+  private final Map<T, Long> cooldownMap;
+  private final long cooldownPeriod;
 
-  /**
-   * Instantiates a new Cooldown manager.
-   *
-   * @param seconds the seconds
-   */
-  public CooldownManager(final int seconds) {
+  public CooldownManager(long cooldownPeriod, TimeUnit unit) {
     this.cooldownMap = new HashMap<>();
-    this.cooldownPeriod = seconds * 1000L;
+    this.cooldownPeriod = unit.toMillis(cooldownPeriod);
   }
 
-  /**
-   * On cooldown check.
-   *
-   * @param uuid the uuid
-   * @return the boolean
-   */
-  public boolean isOnCooldown(final UUID uuid) {
-    if (!this.cooldownMap.containsKey(uuid)) return false;
-    return this.getRemainingTime(uuid) > 0;
+  public boolean isOnCooldown(@NotNull T key) {
+    return this.cooldownMap.containsKey(key) && this.cooldownMap.get(key) > System.currentTimeMillis();
   }
 
-  /**
-   * Sets uuid on cooldown.
-   *
-   * @param uuid the uuid
-   */
-  public void setCooldown(final UUID uuid) {
-    this.cooldownMap.put(uuid, System.currentTimeMillis() + this.cooldownPeriod);
+  public void setCooldown(@NotNull T key) {
+    this.cooldownMap.put(key, System.currentTimeMillis() + this.cooldownPeriod);
   }
 
-  /**
-   * Remove uuid's cooldown.
-   *
-   * @param uuid the uuid
-   */
-  public void removeCooldown(final UUID uuid) {
-    if (!this.cooldownMap.containsKey(uuid)) return;
-    this.cooldownMap.remove(uuid);
+  public void removeCooldown(@NotNull T key) {
+    this.cooldownMap.remove(key);
   }
 
-  /**
-   * Gets remaining time.
-   *
-   * @param uuid the uuid
-   * @return the remaining time
-   */
-  public long getRemainingTime(final UUID uuid) {
-    if (!this.cooldownMap.containsKey(uuid)) return 0;
-    long difference = this.cooldownMap.get(uuid) - System.currentTimeMillis();
-    if (difference <= 0) return 0;
-    return TimeUnit.MILLISECONDS.toSeconds(difference);
+  public long getRemainingTime(@NotNull T key, @NotNull TimeUnit unit) {
+    long remaining = this.cooldownMap.containsKey(key) ? this.cooldownMap.get(key) - System.currentTimeMillis() : 0;
+    return unit.convert(Math.max(remaining, 0), TimeUnit.MILLISECONDS);
   }
 
-  /**
-   * Sets cooldown time.
-   *
-   * @param seconds the cooldown time
-   */
-  public void setCooldownPeriod(final int seconds) {
-    this.cooldownPeriod = seconds * 1000L;
+  public Map<T, Long> getCooldownMap() {
+    return cooldownMap;
   }
 
-  /**
-   * Gets cooldown map.
-   *
-   * @return the cooldown map
-   */
-  public HashMap<UUID, Long> getCooldownMap() {
-    return this.cooldownMap;
+  public long getCooldownPeriod() {
+    return cooldownPeriod;
   }
 
-  /**
-   * Clear cooldowns.
-   */
   public void clearCooldowns() {
     this.cooldownMap.clear();
   }

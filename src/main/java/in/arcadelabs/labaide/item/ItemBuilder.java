@@ -31,6 +31,7 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Collection;
 import java.util.List;
@@ -46,7 +47,7 @@ public class ItemBuilder {
    *
    * @param material the material
    */
-  public ItemBuilder(final Material material) {
+  public ItemBuilder(@NotNull final Material material) {
     this.itemStack = new ItemStack(material);
     this.itemMeta = this.itemStack.getItemMeta();
   }
@@ -57,7 +58,7 @@ public class ItemBuilder {
    * @param material   the material
    * @param textureMap the texture map
    */
-  public ItemBuilder(final Material material, final Map<String, Object> textureMap) {
+  public ItemBuilder(@NotNull final Material material, @NotNull final Map<String, Object> textureMap) {
     this.itemStack = new ItemStack(material);
     this.itemMeta = (ItemMeta) ConfigurationSerialization.deserializeObject(textureMap);
   }
@@ -68,7 +69,7 @@ public class ItemBuilder {
    * @param name the name
    * @return the name
    */
-  public ItemBuilder setName(final Component name) {
+  public ItemBuilder setName(@NotNull final Component name) {
     this.itemMeta.displayName(name);
     return this;
   }
@@ -79,7 +80,7 @@ public class ItemBuilder {
    * @param loreList the lore list
    * @return the lore
    */
-  public ItemBuilder setLore(final List<Component> loreList) {
+  public ItemBuilder setLore(@NotNull final List<Component> loreList) {
     this.itemMeta.lore(loreList);
     return this;
   }
@@ -109,12 +110,14 @@ public class ItemBuilder {
   /**
    * Sets pdc object.
    *
+   * @param <T>           the type parameter
+   * @param <Z>           the type parameter
    * @param namespacedKey the namespaced key
    * @param type          the type
    * @param value         the value
    * @return the pdc object
    */
-  public ItemBuilder setPDCObject(final NamespacedKey namespacedKey, final PersistentDataType type, final Object value) {
+  public <T, Z> ItemBuilder setPDCObject(@NotNull final NamespacedKey namespacedKey, @NotNull final PersistentDataType<T, Z> type, @NotNull final Z value) {
     this.itemMeta.getPersistentDataContainer().set(namespacedKey, type, value);
     return this;
   }
@@ -127,7 +130,7 @@ public class ItemBuilder {
    * @param ignoreLevelRestriction the ignore level restriction
    * @return the item builder
    */
-  public ItemBuilder addEnchantment(final Enchantment enchantment, final int level, final boolean ignoreLevelRestriction) {
+  public ItemBuilder addEnchantment(@NotNull final Enchantment enchantment, final int level, final boolean ignoreLevelRestriction) {
     this.itemMeta.addEnchant(enchantment, level, ignoreLevelRestriction);
     return this;
   }
@@ -138,7 +141,7 @@ public class ItemBuilder {
    * @param itemFlags the item flags
    * @return the item builder
    */
-  public ItemBuilder addItemFlags(final ItemFlag... itemFlags) {
+  public ItemBuilder addItemFlags(@NotNull final ItemFlag... itemFlags) {
     this.itemMeta.addItemFlags(itemFlags);
     return this;
   }
@@ -150,7 +153,7 @@ public class ItemBuilder {
    * @param modifier  the modifier
    * @return the item builder
    */
-  public ItemBuilder addAttributeModifier(final Attribute attribute, final AttributeModifier modifier) {
+  public ItemBuilder addAttributeModifier(@NotNull final Attribute attribute, @NotNull final AttributeModifier modifier) {
     this.itemMeta.addAttributeModifier(attribute, modifier);
     return this;
   }
@@ -161,7 +164,7 @@ public class ItemBuilder {
    * @param attributeModifiers the attribute modifiers
    * @return the attribute modifiers
    */
-  public ItemBuilder setAttributeModifiers(final Multimap<Attribute, AttributeModifier> attributeModifiers) {
+  public ItemBuilder setAttributeModifiers(@NotNull final Multimap<Attribute, AttributeModifier> attributeModifiers) {
     this.itemMeta.setAttributeModifiers(attributeModifiers);
     return this;
   }
@@ -172,7 +175,7 @@ public class ItemBuilder {
    * @param canDestroy the can destroy
    * @return the destroyable keys
    */
-  public ItemBuilder setDestroyableKeys(final Collection<Namespaced> canDestroy) {
+  public ItemBuilder setDestroyableKeys(@NotNull final Collection<Namespaced> canDestroy) {
     this.itemMeta.setDestroyableKeys(canDestroy);
     return this;
   }
@@ -183,7 +186,7 @@ public class ItemBuilder {
    * @param canPlaceOn the can place on
    * @return the placeable keys
    */
-  public ItemBuilder setPlaceableKeys(final Collection<com.destroystokyo.paper.Namespaced> canPlaceOn) {
+  public ItemBuilder setPlaceableKeys(@NotNull final Collection<com.destroystokyo.paper.Namespaced> canPlaceOn) {
     this.itemMeta.setPlaceableKeys(canPlaceOn);
     return this;
   }

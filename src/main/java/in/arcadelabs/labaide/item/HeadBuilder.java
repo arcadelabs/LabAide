@@ -47,6 +47,7 @@ public class HeadBuilder {
   private static final int END_MARK = 0;
   private final Logger logger;
   private final Logger.Level level;
+
   public HeadBuilder(final Logger logger, final Logger.Level level) {
     this.logger = logger;
     this.level = level;
