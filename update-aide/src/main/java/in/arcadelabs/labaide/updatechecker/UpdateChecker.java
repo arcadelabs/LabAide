@@ -44,7 +44,7 @@ public class UpdateChecker {
   private final Plugin plugin;
   private final UpdateChecker instance;
   private final URL url;
-  Gson gson = new Gson();
+  final Gson gson = new Gson();
   private int interval;
   private Update update;
   private List<String> message = new ArrayList<>();
