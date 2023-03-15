@@ -7,8 +7,14 @@
     <groupId>in.arcadelabs.labaide</groupId>
     <artifactId>LabAide</artifactId>
     <version>2.7</version>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
     <url>https://github.com/arcadelabs/LabAide</url>
+    <modules>
+        <module>common-aide</module>
+        <module>cooldown-aide</module>
+        <module>update-aide</module>
+        <module>items-aide</module>
+    </modules>
 
     <name>LabAide</name>
 

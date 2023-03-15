@@ -28,14 +28,13 @@ import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 
-
 public class DownloadManager {
 
   URL downloadUrl;
   boolean override;
-  Plugin plugin;
+  final Plugin plugin;
   boolean downloadSuccess;
-  File pluginsDirectory;
+  final File pluginsDirectory;
 
   public DownloadManager(URL downloadUrl, Plugin plugin) {
     this.downloadUrl = downloadUrl;

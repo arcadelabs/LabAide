@@ -52,7 +52,6 @@ import java.util.logging.Level;
 import java.util.stream.Collectors;
 import java.util.zip.GZIPOutputStream;
 
-@SuppressWarnings("unused")
 public class BStats {
 
   private final Plugin plugin;

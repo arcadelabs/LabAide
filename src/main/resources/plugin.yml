@@ -1,4 +1,0 @@
-name: LabAide
-version: '${project.version}'
-main: in.arcadelabs.labaide.LabAide
-api-version: 1.13

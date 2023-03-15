@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
 @UtilityClass
 public class NameValidator {
 
-  public boolean offlineCheck(final String username) {
+  public static boolean offlineCheck(final String username) {
     if (username.length() < 3 || username.length() > 16) return false;
     if (username.contains(" ")) return false;
 
@@ -23,12 +23,12 @@ public class NameValidator {
     return !m.matches();
   }
 
-  public boolean geyserCheck(final String username, final String geyserPrefix) {
+  public static boolean geyserCheck(final String username, final String geyserPrefix) {
     if (!offlineCheck(username)) return false;
     return username.startsWith(geyserPrefix);
   }
 
-  public boolean onlineCheck(final String username) throws IOException {
+  public static boolean onlineCheck(final String username) throws IOException {
     if (!offlineCheck(username)) return false;
 
     String json = JsonFetcher.getJsonString(new URL("https://api.mojang.com/users/profiles/minecraft/" + username));

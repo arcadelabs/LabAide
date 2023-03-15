@@ -18,9 +18,7 @@
 
 package in.arcadelabs.labaide.item;
 
-import in.arcadelabs.labaide.logger.Logger;
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.format.NamedTextColor;
+import lombok.experimental.UtilityClass;
 
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
@@ -39,19 +37,12 @@ import java.util.zip.GZIPOutputStream;
  * @author Schottky
  * <a href="https://www.spigotmc.org/threads/player-skulls-without-reflection-nms-or-unsafe.458015/">Original code snippet.</a>
  */
-@SuppressWarnings("unused")
+@UtilityClass
 public class HeadBuilder {
   private static final int TYPE_COMPOUND = 10;
   private static final int TYPE_LIST = 9;
   private static final int TYPE_STRING = 8;
   private static final int END_MARK = 0;
-  private final Logger logger;
-  private final Logger.Level level;
-
-  public HeadBuilder(final Logger logger, final Logger.Level level) {
-    this.logger = logger;
-    this.level = level;
-  }
 
   private static void write(DataOutput output, String value) throws IOException {
     output.writeByte(TYPE_COMPOUND);
@@ -92,7 +83,7 @@ public class HeadBuilder {
    * @param value the base64 encoded skull texture value
    * @return the skull texture map
    */
-  public Map<String, Object> createSkullMap(String value) {
+  public static Map<String, Object> createSkullMap(String value) {
     try {
       final ByteArrayOutputStream out = new ByteArrayOutputStream();
       final DataOutputStream dos = new DataOutputStream(new BufferedOutputStream(new GZIPOutputStream(out)));
@@ -105,9 +96,7 @@ public class HeadBuilder {
       map.put("==", "ItemMeta");
       return map;
     } catch (IOException e) {
-      this.logger.log(level, Component.text("Invalid skull texture value.", NamedTextColor.DARK_PURPLE));
-      this.logger.log(level, Component.text(e.getMessage(), NamedTextColor.DARK_PURPLE), e.fillInStackTrace());
-      return null;
+      throw new IllegalArgumentException("Invalid skull texture value.", e.getCause());
     }
   }
 }
