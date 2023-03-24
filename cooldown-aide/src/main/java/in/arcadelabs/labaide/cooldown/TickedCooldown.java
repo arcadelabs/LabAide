@@ -12,7 +12,90 @@ import java.util.concurrent.TimeUnit;
 
 public class TickedCooldown<T> extends AbstractCooldown<T> implements Runnable {
 
+    //----------------------------------------------------------------------------
+    // BUILDER
+    //----------------------------------------------------------------------------
+    public static class TickedCooldownBuilder<TKey>{
+        private long defaultExpiryDuration;
+        private TimeUnit timeUnit;
+        private CooldownExpiryAction<TKey> expiryAction;
 
+        private long defaultTickTime;
+
+        private TimeUnit tickTimeUnit;
+        public TickedCooldownBuilder(){
+            this.withDefaultSettings();
+        }
+
+        /**
+         * Sets the default expiry time of the cooldown provider
+         * @param expiryTime expiry time
+         * @return The builder
+         */
+        public TickedCooldown.TickedCooldownBuilder<TKey> withDefaultExpiryTime(long expiryTime){
+            this.defaultExpiryDuration = expiryTime;
+            return this;
+        }
+
+        public TickedCooldown.TickedCooldownBuilder<TKey> withDefaultExpiryTimeUnit(TimeUnit unit){
+            this.timeUnit = unit;
+            return this;
+        }
+
+        public TickedCooldown.TickedCooldownBuilder<TKey> setOnExpiryAction(CooldownExpiryAction<TKey> action){
+            this.expiryAction = action;
+            return this;
+        }
+
+        public TickedCooldown.TickedCooldownBuilder<TKey> setNoActionOnExpiry(){
+            this.expiryAction = null;
+            return this;
+        }
+
+        public TickedCooldown.TickedCooldownBuilder<TKey> withCooldownTickInterval(long defaultTickTime){
+            this.defaultTickTime = defaultTickTime;
+            return this;
+        }
+
+        public TickedCooldown.TickedCooldownBuilder<TKey> withCooldownTickTimeUnit(TimeUnit timeUnit){
+            this.tickTimeUnit = timeUnit;
+            return this;
+        }
+
+        public long getDefaultExpiryDuration() {
+            return defaultExpiryDuration;
+        }
+
+        public TimeUnit getTimeUnit() {
+            return timeUnit;
+        }
+
+        public CooldownExpiryAction<TKey> getExpiryAction() {
+            return expiryAction;
+        }
+
+        public long getDefaultTickTime() {
+            return defaultTickTime;
+        }
+
+        public TimeUnit getTickTimeUnit() {
+            return tickTimeUnit;
+        }
+
+        public TickedCooldown.TickedCooldownBuilder<TKey> withDefaultSettings(){
+            this.expiryAction = null;
+            this.timeUnit = TimeUnit.SECONDS;
+            this.defaultExpiryDuration = 1L;
+            this.defaultTickTime = 200;
+            this.timeUnit = TimeUnit.MILLISECONDS;
+            return this;
+        }
+
+        public TickedCooldown<TKey> build(){
+            return new TickedCooldown<TKey>(this.timeUnit.toMillis(this.defaultExpiryDuration), expiryAction, defaultTickTime, tickTimeUnit);
+        }
+    }
+    //--------------------------------------------------------------------------------
 
     private final long tickTime;
     private final TimeUnit timeUnit;

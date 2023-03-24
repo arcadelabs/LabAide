@@ -51,6 +51,18 @@ public class NonTickedCooldown<T> extends AbstractCooldown<T> {
             return this;
         }
 
+        public long getDefaultExpiryDuration() {
+            return defaultExpiryDuration;
+        }
+
+        public TimeUnit getTimeUnit() {
+            return timeUnit;
+        }
+
+        public CooldownExpiryAction<TKey> getExpiryAction() {
+            return expiryAction;
+        }
+
         public NonTickedCooldown<TKey> build(){
             return new NonTickedCooldown<TKey>(this.timeUnit.toMillis(this.defaultExpiryDuration), expiryAction);
         }
