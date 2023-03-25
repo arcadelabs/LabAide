@@ -4,6 +4,7 @@ import in.arcadelabs.labaide.cooldown.abstraction.AbstractCooldown;
 import in.arcadelabs.labaide.cooldown.abstraction.CooldownExpiryAction;
 import in.arcadelabs.labaide.cooldown.exception.CooldownServiceException;
 
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.Executors;
@@ -100,6 +101,8 @@ public class TickedCooldown<T> extends AbstractCooldown<T> implements Runnable {
     private final long tickTime;
     private final TimeUnit timeUnit;
 
+    private final HashSet<T> toBeRemoved = new HashSet<>();
+
     private final ScheduledExecutorService scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
 
     public TickedCooldown(long defaultExpiryDuration, CooldownExpiryAction<T> expiryAction, long tickTime, TimeUnit timeUnit) {
@@ -149,20 +152,34 @@ public class TickedCooldown<T> extends AbstractCooldown<T> implements Runnable {
     }
 
     /**
-     * When an object implementing interface {@code Runnable} is used
-     * to create a thread, starting the thread causes the object's
-     * {@code run} method to be called in that separately executing
-     * thread.
-     * <p>
-     * The general contract of the method {@code run} is that it may
-     * take any action whatsoever.
+     * Marks the element to be removed
      *
+     * @param key The key that has to be removed
+     */
+    @Override
+    public void removeCooldown(T key) {
+        this.toBeRemoved.add(key);
+    }
+
+    /**
+     * The logic for ticking each element and handle it if the cooldown is over
+     *
+     * @see Runnable#run()
      * @see Thread#run()
      */
     @Override
     public void run() {
         if(isEmpty())
             return;
+
+        if(!this.toBeRemoved.isEmpty()){
+            Iterator<T> iterator = this.toBeRemoved.iterator();
+            while (iterator.hasNext()){
+                T next = iterator.next();
+                this.cache.remove(next);
+                iterator.remove();
+            }
+        }
 
         Iterator<Map.Entry<T, Long>> iterator = this.cache.entrySet().iterator();
         while (iterator.hasNext()){
