@@ -40,12 +40,23 @@ public final class NamespacedKeyBuilder {
   }
 
   /**
+   * Instantiates a new Namespaced key builder.
+   *
+   * @param keyPrefix the key prefix
+   */
+  public NamespacedKeyBuilder(final String keyPrefix) {
+    this.keyPrefix = keyPrefix.toLowerCase();
+    this.plugin = null;
+  }
+
+  /**
    * Gets new key.
    *
    * @param key the key
    * @return the new key
    */
   public NamespacedKey getNewKey(final String key) {
-    return new NamespacedKey(this.plugin, this.keyPrefix + "_" + key.toLowerCase());
+    if (this.plugin == null) return new NamespacedKey(this.keyPrefix, this.keyPrefix + "_" + key.toLowerCase());
+    else return new NamespacedKey(this.plugin, this.keyPrefix + "_" + key.toLowerCase());
   }
 }
