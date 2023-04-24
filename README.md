@@ -1,26 +1,29 @@
 ## Dependancy information
 
-# This project is undergoing a major refactor! please wait for proper documentation before using this in your projects.
-
-[![LabAide version](https://repo.zorino.in/api/badge/latest/releases/in/arcadelabs/labaide/LabAide?color=40c14a&name=LabAide%20version)](https://github.com/arcadelabs/LabAide/releases/latest)
-[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/arcadelabs/LabAIde/publish.yml?branch=master&color=45b94e)](https://repo.zorino.in/#/releases/in/arcadelabs/labaide/LabAide)
+[![LabAide version](https://repo.arcadelabs.in/api/badge/latest/releases/in/arcadelabs/labaide/LabAide?color=40c14a&name=LabAide%20version)](https://github.com/arcadelabs/LabAide/releases/latest)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/arcadelabs/labaide/deploy.yml?branch=master&color=45b94e)](https://repo.arcadelabs.in/#/releases/in/arcadelabs/labaide/LabAide)
 
 ### Maven
 
 > ```xml
 > <repository>
->     <id>arcadelabs-mvn-releases</id>
->     <name>ArcadeLabs Repository</name>
->     <url>https://repo.zorino.in/releases</url>
+>     <id>arcadelabs-repository-releases</id>
+>     <name>ArcadeLabs Maven Repository</name>
+>     <url>https://repo.arcadelabs.in/releases</url>
 > </repository>
 > ```
+
+Artifacts (artifactId): [`common-aide`](https://github.com/arcadelabs/LabAide/tree/master/common-aide),
+[`cooldown-aide`](https://github.com/arcadelabs/LabAide/tree/master/cooldown-aide),
+[`update-aide`](https://github.com/arcadelabs/LabAide/tree/master/update-aide),
+[`items-aide`](https://github.com/arcadelabs/LabAide/tree/master/items-aide),
+[`libs-aide`](https://github.com/arcadelabs/LabAide/tree/master/libs-aide)
 
 > ```xml
 > <dependency>
 >     <groupId>in.arcadelabs.labaide</groupId>
->     <artifactId>LabAide</artifactId>
+>     <artifactId>[ARTIFACT]</artifactId>
 >     <version>[VERSION]</version>
->     <scope>provided</scope>
 > </dependency>
 > ```
 
@@ -28,17 +31,21 @@
 
 > ```groovy
 > maven {
->     url 'https://repo.zorino.in/releases'
+>     url 'https://repo.arcadelabs.in/releases'
 > }
 > ```
 
 > ```groovy
 > dependencies {
->     compileOnly 'in.arcadelabs.labaide:LabAide:[VERSION]'
+>     compileOnly 'in.arcadelabs.labaide:[ARTIFACT]:[VERSION]'
 > }
 > ```
 
-## Utilities
+<br>
+
+## This project is undergoing a major refactor! please wait for proper documentation before using this in your projects.
+## Following examples are outdated.
+### Utilities
 
 ```
 .
@@ -68,7 +75,7 @@
             └── Weighted randomized collection utility.
 ```
 
-## Examples
+### Examples
 
 > Cooldown.java
 
