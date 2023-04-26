@@ -14,7 +14,6 @@
         <module>cooldown-aide</module>
         <module>update-aide</module>
         <module>items-aide</module>
-        <module>libs-aide</module>
     </modules>
 
     <name>LabAide</name>
