@@ -7,7 +7,7 @@
 
 > ```xml
 > <repository>
->     <id>arcadelabs-repository-releases</id>
+>     <id>arcadelabs</id>
 >     <name>ArcadeLabs Maven Repository</name>
 >     <url>https://repo.arcadelabs.in/releases</url>
 > </repository>
@@ -16,8 +16,7 @@
 Artifacts (artifactId): [`common-aide`](https://github.com/arcadelabs/LabAide/tree/master/common-aide),
 [`cooldown-aide`](https://github.com/arcadelabs/LabAide/tree/master/cooldown-aide),
 [`update-aide`](https://github.com/arcadelabs/LabAide/tree/master/update-aide),
-[`items-aide`](https://github.com/arcadelabs/LabAide/tree/master/items-aide),
-[`libs-aide`](https://github.com/arcadelabs/LabAide/tree/master/libs-aide)
+[`items-aide`](https://github.com/arcadelabs/LabAide/tree/master/items-aide)
 
 > ```xml
 > <dependency>
@@ -31,13 +30,14 @@ Artifacts (artifactId): [`common-aide`](https://github.com/arcadelabs/LabAide/tr
 
 > ```groovy
 > maven {
+>     name 'arcadelabsReleases'
 >     url 'https://repo.arcadelabs.in/releases'
 > }
 > ```
 
 > ```groovy
 > dependencies {
->     compileOnly 'in.arcadelabs.labaide:[ARTIFACT]:[VERSION]'
+>     implementation 'in.arcadelabs.labaide:[ARTIFACT]:[VERSION]'
 > }
 > ```
 
