@@ -3,7 +3,7 @@ run-name: Deploy to Maven repo by @${{ github.actor }}
 on: [ workflow_dispatch ]
 jobs:
   publish:
-    name: Publish [mvn-releases]
+    name: Publish [mvn-releases] by @${{ github.actor }}
     runs-on: ubuntu-latest
     steps:
       - name: Set up actions checkout
