@@ -24,10 +24,11 @@
     <parent>
         <groupId>in.arcadelabs.labaide</groupId>
         <artifactId>LabAide</artifactId>
-        <version>1.2</version>
+        <version>parent</version>
     </parent>
 
     <artifactId>items-aide</artifactId>
+    <version>1.2</version>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>

@@ -6,7 +6,7 @@
 
     <groupId>in.arcadelabs.labaide</groupId>
     <artifactId>LabAide</artifactId>
-    <version>1.2</version>
+    <version>parent</version>
     <packaging>pom</packaging>
     <url>https://github.com/arcadelabs/LabAide</url>
     <modules>
