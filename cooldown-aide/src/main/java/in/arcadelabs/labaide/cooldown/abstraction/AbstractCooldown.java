@@ -110,7 +110,17 @@ public abstract class AbstractCooldown<T> implements ICooldown<T> {
         this.cache.remove(key);
     }
 
-    public long getDefaultExpiryDuration() {
-        return defaultExpiryDuration;
+  public long getDefaultExpiryDuration() {
+    return defaultExpiryDuration;
+  }
+
+  public long getRemainingTime(T key, TimeUnit timeUnit) {
+    if (!this.cache.containsKey(key)) {
+      return 0L;
     }
+    long expiryTime = this.cache.get(key);
+    long currentTime = System.currentTimeMillis();
+    long remainingTime = expiryTime - currentTime;
+    return timeUnit.convert(remainingTime, TimeUnit.MILLISECONDS);
+  }
 }
