@@ -44,7 +44,9 @@ Artifacts (artifactId): [`common-aide`](https://github.com/arcadelabs/LabAide/tr
 <br>
 
 ## This project is undergoing a major refactor! please wait for proper documentation before using this in your projects.
+
 ## Following examples are outdated.
+
 ### Utilities
 
 ```

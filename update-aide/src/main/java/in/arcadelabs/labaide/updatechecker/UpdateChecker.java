@@ -19,8 +19,6 @@
 package in.arcadelabs.labaide.updatechecker;
 
 import com.google.gson.Gson;
-//import in.arcadelabs.labaide.LabAide;
-//import in.arcadelabs.labaide.logger.Logger;
 import in.arcadelabs.labaide.updatechecker.downloads.DownloadManager;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
@@ -41,10 +39,10 @@ import java.util.List;
  * To-Do DownloadManager
  */
 public class UpdateChecker {
+  final Gson gson = new Gson();
   private final Plugin plugin;
   private final UpdateChecker instance;
   private final URL url;
-  final Gson gson = new Gson();
   private int interval;
   private Update update;
   private List<String> message = new ArrayList<>();

@@ -30,11 +30,11 @@ import java.nio.channels.ReadableByteChannel;
 
 public class DownloadManager {
 
+  final Plugin plugin;
+  final File pluginsDirectory;
   URL downloadUrl;
   boolean override;
-  final Plugin plugin;
   boolean downloadSuccess;
-  final File pluginsDirectory;
 
   public DownloadManager(URL downloadUrl, Plugin plugin) {
     this.downloadUrl = downloadUrl;
